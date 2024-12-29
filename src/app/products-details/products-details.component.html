@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row py-4">
+        <div class="col-md-1 pt-4 cursor-pointer ">
+            <div class="d-flex  flex-column " *ngFor="let img of productDetails.images">
+                <img [src]="img" class=" border my-1">
+            </div>
+        </div>
+        <div class="col-md-5 ">
+            <img [src]="productDetails?.imageCover" class="w-100" alt="">
+        </div>
+        <div class="col-md-6">
+            <div class="breadcrumb-container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb ">
+                        <li class="breadcrumb-item">
+                            <a href="/" class="text-black-50 " routerLink="mainhome">home</a>
+                        </li>
+                        <li class="breadcrumb-item active text-dark" aria-current="page">{{productDetails?.title}}</li>
+
+
+                    </ol>
+                </nav>
+                <div class="">
+                    <h2 class="fw-semibold h3 my-4">{{productDetails?.title}}</h2>
+                    <p class="fw-bolder mb-4">
+                        {{productDetails?.price|currency:'EUR'}}
+                    </p>
+                    <p class="text-muted border-bottom pb-4">{{productDetails?.description}}</p>
+                </div>
+                <div class="border-bottom ">
+                    <div class="d-flex">
+                        <p class="fw-bold me-1 sec-color">brand : </p>
+                        <span> {{productDetails?.brand.slug}}</span>
+                        <!-- <img [src]="productDetails?.brand.image" > -->
+
+                    </div>
+                    <div class="d-flex">
+                        <p class="fw-bold me-1 sec-color">sort : </p>
+                        <span> {{productDetails?.category.name}}</span>
+                    </div>
+                    <div class="text-center  pt-5 pb-4">
+                    <button class="gray-color btn text-white px-5 fw-medium ">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

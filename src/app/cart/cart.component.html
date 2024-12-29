@@ -1,0 +1,94 @@
+
+<body>
+    <div class="cart-page text-center " style="height:50vh;">
+
+        <h1 class="fw-bold mb-3">Cart</h1>
+        <div class="breadcrumb-container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/" class="text-black-50 " routerLink="mainhome">home</a>
+                    </li>
+                    <li class="breadcrumb-item active text-dark" aria-current="page">Cart</li>
+    
+                </ol>
+            </nav>
+        </div>
+    
+    
+    </div>
+<div class=" border-bottom">
+    <div class=" d-flex flex-nowrap align-items-center justify-content-around fw-bold">
+        <li class="" style="width: 1%;">remove</li>
+          <li >
+            PRODUCT
+          </li>
+          <li>
+            PRICE
+          </li>
+          <li>
+            STOCK
+          </li>
+          <li>
+            QUANTITY
+          </li>
+          <li>
+            TOTAL
+          </li>
+       
+    </div>
+</div>
+<div class=" border-bottom " *ngFor="let product of cartDetails?.products">
+  
+            
+    
+      
+
+    <div class=" d-flex flex-nowrap align-items-center justify-content-around fw-bold " >
+        <li>
+      
+       <button class="border border-opacity-50" (click)="removeItem(product.product._id)">
+        <i class="fa-solid fa-xmark  text-center cursor-pointer " style="color: #000000;  "></i>
+       </button>    
+       
+        </li>
+        
+
+          <li class="text-center" style="width:4% ; ">
+         
+        <img [src]="product.product.imageCover"  alt={{product.product.title}} style="width: 150%;" >
+          </li>
+          <li >
+            <h5 class="fw-bold">${{product.price}}</h5>
+          </li>
+          <li >
+            STOCK
+          </li>
+          <li >
+          <button class="plus">
+            <i class="fa-solid fa-square-plus" style="color: #030303;" (click)="updateCount(product.product._id,product.count+1);showSuccessToast()">
+            </i>
+          </button>  
+          <span class="mx-2">{{product.count}}</span>
+          <button class="minus ">
+
+            <i class="fa-regular fa-square-minus  text-dark"(click)="updateCount(product.product._id,product.count-1);  showErrorToast()" >
+
+            </i>
+          </button>
+          </li>
+          <li >
+            {{ product.price*product.count  }}
+          </li>
+       
+    </div>
+</div>
+<div class="row">
+<div class="col-6 text-center">
+  <button  class="btn bg-dark text-bg-primary border-1 ms-3" routerLink="/checkout">online Payment</button>
+
+</div>
+</div>
+
+
+</body>

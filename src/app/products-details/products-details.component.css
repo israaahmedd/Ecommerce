@@ -1,0 +1,13 @@
+.sec-color{
+    color: #C7AB62;
+}
+.gray-color{
+    background-color: #6F6F6F;
+}
+
+ 
+
+.border{
+    border: var(--bs-border-width) var(--bs-border-style) #090909!important;
+
+}

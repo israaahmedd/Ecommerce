@@ -1,0 +1,48 @@
+<div class="search-page text-center " style="height:50vh;">
+
+    <h1 class="fw-bold mb-3">search</h1>
+    <div class="breadcrumb-container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/" class="text-black-50 " routerLink="mainhome">home</a>
+                </li>
+                <li class="breadcrumb-item active text-dark" aria-current="page">search</li>
+
+            </ol>
+        </nav>
+    </div>
+
+
+</div>
+
+<div class="py-5 ">
+    <div class="container py-3">
+
+        <div action="" class="d-flex justify-content-center align-content-center m-0 mb-5">
+
+            <div class="w-50 me-3">
+                <input [(ngModel)]="searchTerm" type="text" name="search"class="form-control" placeholder="search ...">
+                <div class="d-block"></div>
+            </div>
+            <button class="search-btn btn bg-black text-white fs-5" style="padding:0 80px;" type="submit">search</button>
+
+        </div>
+        <div class="row ">
+
+            <div class="col-md-3 p-5" *ngFor="let product of products|search:searchTerm">
+                <div class="product text-center">
+                    <img src={{product.imageCover}} alt="" class="w-100">
+                    <h2 class="h6 fw-semibold">{{ product.title.substring(0, 12) }}</h2>
+                    <h5 class="font-sm text-muted">{{product.price|currency:'EUR'}} </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>

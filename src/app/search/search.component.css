@@ -1,0 +1,24 @@
+
+
+
+.search-page{
+    background-image: url(src/assets/img/page-header.0fed8cdf5bbcbf1de2c2.jpg);
+    background-size: cover;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    
+
+}
+.search-page h1{
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.2;
+   
+    
+}
+.search-btn:hover{
+    background-color:var(--sec-color) !important;
+}

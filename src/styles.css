@@ -1,0 +1,91 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300&display=swap');
+  :root
+{
+    --main-color:#000;
+    --sec-color:#C7AB62;
+    --light-color:#F6F6F6;
+    --shadow: rgba(145,158,171,.2) 0px 2px 4px -1px,rgba(145,158,171,.14) 0px 4px 5px 0px,rgba(145,158,171,.12) 0px 1px 10px 0px;
+    --font-family: 'DM Sans', sans-serif;
+    --rating-color:#ffc908;
+}
+body{
+
+    font-family: var(--font-family) !important;
+    text-transform: capitalize;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+li{
+    list-style: none;
+}
+.text-main{
+    color: var(--sec-color);
+}
+.font-sm
+{
+    font-size: 14px;
+}
+.rating-color
+{
+    color: var(--rating-color);
+}
+.cursor-pointer
+{
+    cursor: pointer;
+}
+.product:hover{
+    box-shadow: var(--shadow);
+    border: solid 1px var(--main-color);
+    
+    /* transform: scale(1.3); */
+    
+}
+
+
+
+.product .btn 
+{
+    transition: transform 1s , opacity 1s;
+    transform: translateY(100%);
+    opacity: 0;
+}
+.product:hover .btn 
+{
+    opacity: 1;
+    transform: translateY(0%);
+
+}
+
+.bg-sec-color{
+    background-color: var(--sec-color);
+}
+ .btn:hover{
+    opacity: 1 !important;
+}
+.custom-toast-position {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    border-left: 3px solid black;
+
+    text-align: center;
+    width: 20%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999; /* Adjust the z-index as needed */
+    background-color: rgba(231, 228, 208, 0.577);
+    color: #020202; 
+  }
+  .custom-toast {
+
+   font-weight: bolder;
+    
+
+   /* Adjust the border radius to change the shape */
+   /* Change the text color */
+  }

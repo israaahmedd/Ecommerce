@@ -1,0 +1,23 @@
+/* .login,.register{
+    border-bottom: 2px solid;
+    cursor: pointer;
+    font-weight: 700;
+    line-height: 3.4375rem;
+    text-transform: uppercase;
+}
+.bg-light-color{
+   background-color: var(--light-color);
+}
+.icon-pass{
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 20%;
+    position: absolute;
+}
+.star
+{
+    color: red;
+
+    margin: 5px 0 0 5px;
+} */

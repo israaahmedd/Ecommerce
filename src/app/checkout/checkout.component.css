@@ -1,0 +1,30 @@
+a{
+    color:blue !important;
+}
+.border-bottom{
+    margin-top: 70px !important;
+    margin-bottom: 15px !important;
+    margin-left:15px !important;
+    margin-right: 15px !important;
+
+    padding-bottom: 15px !important;
+ 
+}
+
+.btn{
+   background-color: rgb(106, 14, 14); 
+}
+.btn:hover{
+    background-color: rgb(81, 18, 18);
+}
+.checkedBoederImg{
+    border: 1px solid #010101;
+    border-radius: 12px;
+    height: 50px;
+    /* position: relative; */
+    width: 50px!important;
+
+}
+.text-capitalize{
+    text-transform: capitalize !important;
+}

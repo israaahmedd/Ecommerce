@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-center">
+    <div class="w-50 mx-auto py-4 ">
+        <div class="alert alert-danger" *ngIf="apiError.length>0">
+{{apiError}}
+        </div>
+        <form (ngSubmit)="handelLogin(loginForm)" [formGroup]="loginForm">
+           
+
+
+               
+            <label for="email" class="mb-1">email<span class="star">*</span></label>
+            <input type="email" formControlName="email" id="email" class="form-control mb-2"placeholder="Enter your Email">
+            <div *ngIf="loginForm.get('email')?.errors&& loginForm.get('email')?.touched" class="alert alert-danger mb-2">
+                <p *ngIf="loginForm.get('email')?.getError('required')" class="m-0">Email is required</p>
+                <p *ngIf="loginForm.get('email')?.getError('email')" class="m-0">Invalid Email</p>
+            </div>
+
+
+            <label for="password" class="mb-1">Password<span class="star">*</span></label>
+            <input type="password" formControlName="password" id="password" class="form-control mb-2" placeholder="Enter your password">
+            <div *ngIf="loginForm.get('password')?.errors&& loginForm.get('password')?.touched" class="alert alert-danger mb-2">
+                <p *ngIf="loginForm.get('password')?.getError('required')" class="m-0">password is required</p>
+                <p *ngIf="loginForm.get('password')?.getError('pattern')" class="m-0"> Your password should has Upper latter and minlenght is 5 and max is 20</p>
+            </div>
+
+           
+
+        
+           
+
+
+            <button  class=" bg-info-subtle ms-auto d-block btn  text-white px-4">
+            <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
+            <span *ngIf="!isLoading">Login</span>  
+            </button>
+        </form>
+    </div>
+    
+</div>
+
+

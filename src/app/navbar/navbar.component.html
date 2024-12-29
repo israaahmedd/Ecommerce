@@ -1,0 +1,264 @@
+<nav class="navbar navbar-expand-sm navbar-light border border-bottom">
+      <div class="container-fluid ">
+        <div  class="bg-gradient d-flex align-items-center " style="width: 13%;">
+            <img src="./assets/img/pngwing.com.png" alt="" class="w-25" >
+            <span class="fw-bolder fs-5 main-font ">Fresh Cart</span>
+      
+        </div>
+        
+
+        <div class="collapse navbar-collapse fw-semibold fs-5 main-font" id="collapsibleNavId" >
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0 " >  
+                <!-- mx-auto -->
+                <li class="nav-item  " *ngIf="isLogin">
+                    <a class="nav-link active sec-color" routerLink="home" aria-current="page">Home</a>
+                </li>
+                <li class="nav-item" *ngIf="isLogin">
+                    <a class="nav-link" routerLink="shop">shop</a>
+                </li>
+                <li class="nav-item" *ngIf="isLogin">
+                    <a class="nav-link" routerLink="about">about</a>
+                </li>
+                <li class="nav-item" *ngIf="isLogin">
+                    <a class="nav-link" routerLink="contact">contact</a>
+                </li>
+                <li class="nav-item" *ngIf="isLogin">
+                    <a class="nav-link" href="#">FAQ</a>
+                </li>
+                
+            </ul>
+          
+        </div>
+        <div class="collapse navbar-collapse pe-2 cursor-pointer" id="collapsibleNavId">
+            <ul class="end-ul navbar-nav ms-auto mt-2 mt-lg-0 ">
+                <!-- ms-auto -->
+                <li class="nav-item ">
+                    <i class="fa-solid fa-unlock pe-1"*ngIf="!isLogin"></i>
+                    <a #loginRegisterLink class="main-color"  data-bs-toggle="modal" data-bs-target="#exampleModal" *ngIf="!isLogin ">login/register</a> 
+                    <!-- <a routerLink="" class="main-color" *ngIf="isLogin">Log Out</a>  -->
+                    <i class="fa-solid fa-arrow-right-from-bracket" style="color: #000000;" *ngIf="isLogin" (click)="logOut()"></i>
+
+
+                 
+                
+                </li>
+                <li class="nav-item">
+                 <a routerLink="search"><i class="fa-solid fa-magnifying-glass me-4"></i></a>   
+                </li>
+                <li class="nav-item position-relative p-0">
+                  
+                        <i class="fa-solid fa-cart-shopping z-1" routerLink="/cart" >
+                        
+                        </i>
+                        <span class="badge bg-yellow text-white position-absolute top-0 start-0 cart-btn rounded-pill translate-middle " *ngIf="isLogin">{{cartNum}}</span>
+              
+                    
+                </li>
+             
+                
+            </ul>
+          
+        </div>
+  </div>
+</nav>
+
+
+<!-- modal -->
+<div  class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div  class="modal-dialog">
+      <div  class="modal-content">
+        <div  class="modal-header">
+  
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container " #hidden *ngIf="!showMe ">
+                <div class=" m-auto  border border-1 bg-light-color " >
+                  <div class="row w-75 m-auto">
+                    <div class="col-md-6 text-center">
+                      <a class="login">login</a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                      <a class="register" (click)="toogleTag()" id="register">REGISTER</a>
+                      <!-- routerLink="signup" -->
+                    </div>
+                  </div>
+                  <form (ngSubmit)="handelLogin(loginForm)" [formGroup]="loginForm">
+                    <div class="m-4 email">
+      
+                      <label for="email" class="mb-1">email<span class="star">*</span></label>
+                      <input type="email" formControlName="email" id="email" class="form-control mb-2"
+                        placeholder="Enter your email">
+                      <div *ngIf="loginForm.get('email')?.errors&& loginForm.get('email')?.touched"
+                        class="alert alert-danger mb-2">
+                        <p *ngIf="loginForm.get('email')?.getError('required')" class="m-0">Email is required</p>
+                        <p *ngIf="loginForm.get('email')?.getError('email')" class="m-0">Invalid Email</p>
+                      </div>
+      
+                    </div>
+      
+      
+                    <div class="m-4 password">
+                      <label for="password" class="mb-1">Password<span class="star">*</span></label>
+                      <div>
+                        <div class="mb-2 position-relative ">
+                          <input [type]="passType" placeholder="please enter your password " formControlName="password"
+                            id="password" class="form-control mb-2">
+                          <span class="icon-pass">
+      
+                            <i class="fa-solid fa-eye-slash show-option" (click)="togglePassword()"></i>
+      
+                          </span>
+                        </div>
+                        <div *ngIf="loginForm.get('password')?.errors&& loginForm.get('password')?.touched"
+                          class="alert alert-danger mb-2">
+                          <p *ngIf="loginForm.get('password')?.getError('required')" class="m-0">password is required</p>
+                          <p *ngIf="loginForm.get('password')?.getError('pattern')" class="m-0"> Your password should has
+                            Upper
+                            latter and minlenght is 5, max is 20</p>
+                        </div>
+                      </div>
+                    </div>
+      
+                    <div class="mx-4">
+                      <button [disabled]="loginForm.invalid" class="login-btn w-100 btn  text-white py-2 ">
+                        <i class="fas fa-spinner fa-spin"  *ngIf="isLoading"></i>
+                        <span type="button" data-bs-dismiss="modal" *ngIf="!isLoading">Login</span>
+                      </button>
+                    </div>
+                    <div class="af-be position-relative text-center py-2">
+                      <p class=" text-center">or </p>
+      
+                    </div>
+                    <div class="mx-4 mb-4">
+                      <button class="register-btn w-100 btn  text-white py-2 " (click)="toogleTag()">
+                        <!-- <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i> -->
+                        <span *ngIf="!isLoading">create new account</span>
+                      </button>
+                    </div>
+      
+                  </form>
+      
+      
+      
+                </div>
+      
+              </div>
+      
+      
+      
+      
+      
+              <div class=" container " *ngIf="showMe">
+                <!--#showRegister -->
+                <div class="  border border-1 bg-light-color m-auto " >
+                  <div class="row w-75 m-auto">
+                    <div class="col-md-6 text-center">
+                      <a class="login" (click)="toogleTag()">login</a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                      <a class="register" routerLink="signup">REGISTER</a>
+                    </div>
+                  </div>
+      
+                  <form (ngSubmit)="handelSignUp(signupForm)" [formGroup]="signupForm">
+                    <div class="alert alert-danger" *ngIf="apiError.length>0">
+                      {{apiError}}
+                    </div>
+      
+                    <div class="m-4 full-name">
+      
+                      <label for="name" class="mb-1">full name<span class="star">*</span></label>
+                      <input type="text" formControlName="name" id="name" class="form-control mb-2"
+                        placeholder="Enter your name">
+                      <div *ngIf="signupForm.get('name')?.errors&& signupForm.get('name')?.touched"
+                        class="alert alert-danger mb-2">
+                        <p *ngIf="signupForm.get('name')?.getError('required')" class="m-0">Enter your full name</p>
+                        <p *ngIf="signupForm.get('name')?.getError('minlength')" class="m-0">Minmum length is 3</p>
+      
+                      </div>
+      
+                    </div>
+      
+      
+      
+      
+      
+      
+      
+      
+                    <div class="m-4 email">
+                      <label for="email" class="mb-1">email<span class="star">*</span></label>
+                      <input type="email" formControlName="email" id="email" class="form-control mb-2"
+                        placeholder="Enter your email">
+                      <div *ngIf="signupForm.get('email')?.errors&& signupForm.get('email')?.touched"
+                        class="alert alert-danger mb-2">
+                        <p *ngIf="signupForm.get('email')?.getError('required')" class="m-0">Email is required</p>
+                        <p *ngIf="signupForm.get('email')?.getError('email')" class="m-0">Invalid Email</p>
+                      </div>
+                    </div>
+      
+      
+                    <div class="m-4 password">
+                      <label for="password" class="mb-1">Password<span class="star">*</span></label>
+                      <div>
+                        <div class="mb-2 position-relative ">
+                          <input [type]="passType" placeholder="please enter your password " formControlName="password"
+                            id="password" class="form-control mb-2">
+                          <span class="icon-pass"><i class="fa-solid fa-eye-slash" (click)="togglePassword()"></i></span>
+                        </div>
+                        <div *ngIf="signupForm.get('password')?.errors&& signupForm.get('password')?.touched"
+                          class="alert alert-danger mb-2">
+                          <p *ngIf="signupForm.get('password')?.getError('required')" class="m-0">password is required</p>
+                          <p *ngIf="signupForm.get('password')?.getError('pattern')" class="m-0"> Your password should has
+                            Upper latter and minlenght is 5 and max is 20</p>
+                        </div>
+                      </div>
+                    </div>
+      
+                    <div class="m-4 rePassword">
+                      <label for="password" class="mb-1">confirm password<span class="star">*</span></label>
+                      <div>
+                        <div class="mb-2 position-relative ">
+                          <input type="password" placeholder="please enter your repassword " formControlName="rePassword"
+                            id="rePassword" class="form-control mb-2">
+      
+                        </div>
+                        <div *ngIf="signupForm.get('password')?.errors&& signupForm.get('password')?.touched"
+                          class="alert alert-danger mb-2">
+                          <p *ngIf="signupForm.get('password')?.getError('required')" class="m-0">password is required</p>
+                          <p *ngIf="signupForm.get('password')?.getError('pattern')" class="m-0"> Your password should has
+                            Upper
+                            latter and minlenght is 5 and max is 20</p>
+                        </div>
+                      </div>
+                    </div>
+      
+                    <div class="mx-4">
+                      <button [disabled]="signupForm.invalid" class="login-btn w-100 btn  text-white py-2 ">
+                        <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
+                        <span *ngIf="!isLoading">create new account</span>
+                      </button>
+                    </div>
+      
+                    <div class="af-be position-relative py-2">
+                      <p class=" text-center  ">or </p>
+                    </div>
+      
+                    <div class="mx-4 mb-4">
+                      <button class="register-btn w-100 btn  text-white py-2 " routerLink="login">
+                        <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
+                        <span *ngIf="!isLoading">login</span>
+                      </button>
+                    </div>
+      
+                  </form>
+      
+      
+                </div>
+      
+              </div>
+        </div>
+    </div>
+  </div>
+  </div>
